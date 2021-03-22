@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Departments;
+use App\Http\Livewire\Users;
+use App\Http\Livewire\Settings;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,11 +16,17 @@ use App\Http\Livewire\Departments;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::prefix('sercop/admin/')->name('admin.')->middleware('auth:web')->group(function () {
+    Route::get('/departments', Departments::class)->name('departments');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/departments', Departments::class)->name('departments');
+    Route::get('/users', Users::class)->name('users');
+
+    Route::get('/settings', Settings::class)->name('settings');
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
