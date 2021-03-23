@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Departments;
 use App\Http\Livewire\Users;
-use App\Http\Livewire\Settings;
+use App\Http\Livewire\Permissions;
+use App\Http\Controllers\Admin\RoleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +25,9 @@ Route::prefix('sercop/admin/')->name('admin.')->middleware('auth:web')->group(fu
 
     Route::get('/users', Users::class)->name('users');
 
-    Route::get('/settings', Settings::class)->name('settings');
+    Route::resource('roles', RoleController::class);
+
+    Route::get('/permissions', Permissions::class)->name('permissions');
 
     Route::get('/dashboard', function () {
         return view('dashboard');
