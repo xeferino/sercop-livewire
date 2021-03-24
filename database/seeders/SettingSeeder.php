@@ -27,10 +27,10 @@ class SettingSeeder extends Seeder
         Permission::create(['name' => 'show-role', 'description' => 'listado y detalle de rol en el sistema'])->syncRoles([$super_admin]);
         Permission::create(['name' => 'delete-role', 'description' => 'Eliminar de rol en el sistema'])->syncRoles([$super_admin]);
 
-        Permission::create(['name' => 'create-permission', 'description' => 'Crear permiso en el sistema'])->syncRoles([$super_admin]);
-        Permission::create(['name' => 'edit-permission', 'description' => 'Editar permiso en el sistema'])->syncRoles([$super_admin]);
+        //Permission::create(['name' => 'create-permission', 'description' => 'Crear permiso en el sistema'])->syncRoles([$super_admin]);
+        //Permission::create(['name' => 'edit-permission', 'description' => 'Editar permiso en el sistema'])->syncRoles([$super_admin]);
         Permission::create(['name' => 'show-permission', 'description' => 'listado y detalle de permiso en el sistema'])->syncRoles([$super_admin]);
-        Permission::create(['name' => 'delete-permission', 'description' => 'Eliminar de permiso en el sistema'])->syncRoles([$super_admin]);
+        //Permission::create(['name' => 'delete-permission', 'description' => 'Eliminar de permiso en el sistema'])->syncRoles([$super_admin]);
 
         Permission::create(['name' => 'create-user', 'description' => 'Crear usuario en el sistema'])->syncRoles([$super_admin, $admin]);
         Permission::create(['name' => 'edit-user', 'description' => 'Editar usuario en el sistema'])->syncRoles([$super_admin, $admin]);

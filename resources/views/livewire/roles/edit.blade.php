@@ -75,7 +75,7 @@
                                                 <input id="syncPermissions-{{ $item->id }}" name="syncPermissions[]" value="{{ $item->id }}"  {{ (in_array($item->id , old('syncPermissions', $syncPermissions))) ? ' checked' : '' }} type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
                                             </div>
                                             <div class="ml-3 text-sm">
-                                                <label for="syncPermissions-{{ $item->id }}" class="font-medium text-gray-700">{{ $item->name }}</label>
+                                                <label for="syncPermissions-{{ $item->id }}" class="font-medium text-gray-700"><b>{{ $item->name }}</b></label>
                                                 <p class="text-gray-500">{{ $item->description }}</p>
                                             </div>
                                         </div>

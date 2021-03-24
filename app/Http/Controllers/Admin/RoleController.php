@@ -154,12 +154,12 @@ class RoleController extends Controller
 
         $role = Role::findOrFail($role);
 
-        $role->update([
+        $update = $role->update([
             'name'         => $request->name,
             'description'  => $request->description
         ]);
         $role->syncPermissions($request->syncPermissions, true);
-        if($role){
+        if($update){
             return redirect()->route('admin.roles.index')->with(['action' => 'update', 'message' => 'Rol actualizado exitosamente']);
         }
     }

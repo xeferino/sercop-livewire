@@ -35,7 +35,7 @@
                                     <div class="rounded-md bg-gray-50 p-4">
                                         <div class="relative flex items-start">
                                             <div class="ml-3 text-sm">
-                                                <label for="syncPermissions-{{ $item->id }}" class="font-medium text-gray-700">{{ $item->name }}</label>
+                                                <label for="syncPermissions-{{ $item->id }}" class="font-medium text-gray-700"><b>{{ $item->name }}</b></label>
                                                 <p class="text-gray-500">{{ $item->description }}</p>
                                             </div>
                                         </div>

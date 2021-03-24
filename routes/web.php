@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Departments;
 use App\Http\Livewire\Users;
 use App\Http\Livewire\Permissions;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,9 @@ Route::get('/', function () {
 Route::prefix('sercop/admin/')->name('admin.')->middleware('auth:web')->group(function () {
     Route::get('/departments', Departments::class)->name('departments');
 
-    Route::get('/users', Users::class)->name('users');
+    Route::get('/users', Users::class)->name('users.index');
+
+    Route::resource('users', UserController::class)->except(['index']);
 
     Route::resource('roles', RoleController::class);
 
