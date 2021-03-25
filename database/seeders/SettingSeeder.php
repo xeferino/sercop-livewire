@@ -43,6 +43,25 @@ class SettingSeeder extends Seeder
         Permission::create(['name' => 'show-department', 'description' => 'listado y detalle de departamento en el sistema'])->syncRoles([$super_admin, $admin, $user]);
         Permission::create(['name' => 'delete-department', 'description' => 'Eliminar de departamento en el sistema'])->syncRoles([$super_admin]);
 
+         //permissions types
+         Permission::create(['name' => 'create-type', 'description' => 'Crear tipos de procesos en el sistema'])->syncRoles([$super_admin, $admin]);
+         Permission::create(['name' => 'edit-type', 'description' => 'Editar tipos de procesos en el sistema'])->syncRoles([$super_admin, $admin]);
+         Permission::create(['name' => 'show-type', 'description' => 'listado y detalle de tipos de procesos en el sistema'])->syncRoles([$super_admin, $admin, $user]);
+         Permission::create(['name' => 'delete-type', 'description' => 'Eliminar de tipos de procesos en el sistema'])->syncRoles([$super_admin]);
+
+         //permissions stages
+         Permission::create(['name' => 'create-stage', 'description' => 'Crear etapas de procesos en el sistema'])->syncRoles([$super_admin, $admin]);
+         Permission::create(['name' => 'edit-stage', 'description' => 'Editar etapas de procesos en el sistema'])->syncRoles([$super_admin, $admin]);
+         Permission::create(['name' => 'show-stage', 'description' => 'listado y detalle de etapas de procesos en el sistema'])->syncRoles([$super_admin, $admin, $user]);
+         Permission::create(['name' => 'delete-stage', 'description' => 'Eliminar de etapas de procesos en el sistema'])->syncRoles([$super_admin]);
+
+          //permissions sections
+          Permission::create(['name' => 'create-section', 'description' => 'Crear secciones de procesos en el sistema'])->syncRoles([$super_admin, $admin]);
+          Permission::create(['name' => 'edit-section', 'description' => 'Editar secciones de procesos en el sistema'])->syncRoles([$super_admin, $admin]);
+          Permission::create(['name' => 'show-section', 'description' => 'listado y detalle de secciones de procesos en el sistema'])->syncRoles([$super_admin, $admin, $user]);
+          Permission::create(['name' => 'delete-section', 'description' => 'Eliminar de secciones de procesos en el sistema'])->syncRoles([$super_admin]);
+
+
         //setting users system default
         User::create([
                 'name'              => 'Super Admin',

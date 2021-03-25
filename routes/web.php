@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Departments;
+use App\Http\Livewire\TypeProcedures;
+use App\Http\Livewire\Stages;
+use App\Http\Livewire\Sections;
 use App\Http\Livewire\Users;
 use App\Http\Livewire\Permissions;
 use App\Http\Controllers\Admin\UserController;
@@ -23,6 +26,12 @@ Route::get('/', function () {
 
 Route::prefix('sercop/admin/')->name('admin.')->middleware('auth:web')->group(function () {
     Route::get('/departments', Departments::class)->name('departments');
+
+    Route::get('/types-procedures', TypeProcedures::class)->name('types');
+
+    Route::get('/stages', Stages::class)->name('stages');
+
+    Route::get('/sections', Sections::class)->name('sections');
 
     Route::get('/users', Users::class)->name('users.index');
 
