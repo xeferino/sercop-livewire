@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\Department;
+use App\Models\Procedure;
 
 
 class User extends Authenticatable
@@ -69,5 +70,10 @@ class User extends Authenticatable
     public function Department()
     {
         return $this->belongsTo(Department::class);
+    }
+
+    public function Procedures()
+    {
+        return $this->hasMany(Procedure::class);
     }
 }

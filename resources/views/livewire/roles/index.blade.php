@@ -25,7 +25,7 @@
                                                 <p class="text-md text-blue-700">
                                                     Listado de roles en el sistema
                                                 </p>
-                                                @can('show-role')
+                                                @can('create-role')
                                                     <a href="{{ route('admin.roles.create') }}" class="inline-flex items-center px-5 py-2 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-green-400 hover:bg-green-500 focus:outline-none">
                                                         Nuevo Rol
                                                     </a>

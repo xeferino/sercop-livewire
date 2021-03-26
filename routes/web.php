@@ -2,13 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Departments;
+use App\Http\Livewire\Procedures;
 use App\Http\Livewire\TypeProcedures;
 use App\Http\Livewire\Stages;
 use App\Http\Livewire\Sections;
 use App\Http\Livewire\Users;
 use App\Http\Livewire\Permissions;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ProcedureController;
 use App\Http\Controllers\Admin\RoleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,11 +40,13 @@ Route::prefix('sercop/admin/')->name('admin.')->middleware('auth:web')->group(fu
 
     Route::resource('users', UserController::class)->except(['index']);
 
+    Route::get('/procedures', Procedures::class)->name('procedures.index');
+
+    Route::resource('procedures', ProcedureController::class)->except(['index']);
+
     Route::resource('roles', RoleController::class);
 
     Route::get('/permissions', Permissions::class)->name('permissions');
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 });
