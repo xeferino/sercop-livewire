@@ -14,7 +14,7 @@ class ProcedureController extends Controller
      */
     public function create()
     {
-        //
+        return view('livewire.procedures.add');
     }
 
     /**
