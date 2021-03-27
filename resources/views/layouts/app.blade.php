@@ -20,7 +20,7 @@
     </head>
     <body class="font-sans antialiased">
 
-        <div class="h-screen flex overflow-hidden bg-gray-100">
+        <div class="h-screen flex overflow-hidden bg-gray-100" x-data="{ open:true }">
 
             @livewire('navigation-menu')
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Department;
+use App\Models\TypeProcedure;
 
 class ProcedureController extends Controller
 {
@@ -14,7 +16,10 @@ class ProcedureController extends Controller
      */
     public function create()
     {
-        return view('livewire.procedures.add');
+        return view('livewire.procedures.add', [
+            'departments' => Department::where('status', 1)->get(),
+            'types'       => TypeProcedure::all()
+        ]);
     }
 
     /**
