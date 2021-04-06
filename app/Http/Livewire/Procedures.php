@@ -21,7 +21,7 @@ class Procedures extends Component
     public function render()
     {
         return view('livewire.procedures.index',[
-            'procedures' => Procedure::where("number", "LIKE", "%{$this->search}%")->orderBy('id', 'DESC')->paginate($this->perPage)
+            'procedures' => Procedure::where("number", "LIKE", "%{$this->search}%")->with('documents')->orderBy('id', 'DESC')->paginate($this->perPage)
         ]);
     }
 

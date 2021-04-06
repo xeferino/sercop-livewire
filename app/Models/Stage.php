@@ -20,6 +20,6 @@ class Stage extends Model
 
     public function Sections()
     {
-        return $this->hasMany(Section::class, 'id', 'stage_id');
+        return $this->hasMany(Section::class, 'stage_id', 'id');
     }
 }

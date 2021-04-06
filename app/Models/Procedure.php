@@ -13,7 +13,7 @@ use App\Models\Document;
 class Procedure extends Model
 {
     use HasFactory;
-    protected $fillable = ['number', 'description', 'year', 'status', 'departmet_id', 'user_id'];
+    protected $fillable = ['number', 'description', 'year', 'status', 'department_id', 'user_id', 'type_procedure_id'];
 
     public function Department()
     {

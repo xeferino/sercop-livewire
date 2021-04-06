@@ -40,6 +40,8 @@ Route::prefix('sercop/admin/')->name('admin.')->middleware('auth:web')->group(fu
 
     Route::resource('users', UserController::class)->except(['index']);
 
+    Route::get('/procedures/download/{file}', 'App\Http\Controllers\Admin\ProcedureController@downloadFile')->name('procedures.download.file');
+
     Route::get('/procedures', Procedures::class)->name('procedures.index');
 
     Route::resource('procedures', ProcedureController::class)->except(['index']);

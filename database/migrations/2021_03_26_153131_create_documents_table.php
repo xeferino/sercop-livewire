@@ -18,10 +18,11 @@ class CreateDocumentsTable extends Migration
             $table->string('name')->nullable($value=true);
             $table->string('file_name')->nullable($value=true);
             $table->string('file_path')->nullable($value=true);
+            $table->string('file_path_delete')->nullable($value=true);
             $table->string('file_size')->nullable($value=true);
             $table->string('file_type')->nullable($value=true);
             $table->foreignId('procedure_id')->nullable($value=true);
-            $table->foreign('procedure_id')->references('id')->on('procedures')->onDelete('set null');
+            $table->foreign('procedure_id')->references('id')->on('procedures')->onDelete('cascade');
             $table->foreignId('section_id')->nullable($value=true);
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('set null');
             $table->timestamps();

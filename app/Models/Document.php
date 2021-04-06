@@ -11,7 +11,7 @@ use App\Models\Section;
 class Document extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'file_name', 'file_path', 'file_size', 'file_type', 'procedure_id', 'section_id'];
+    protected $fillable = ['name', 'file_name', 'file_path', 'file_path_delete', 'file_size', 'file_type', 'procedure_id', 'section_id'];
 
 
     public function Procedure()

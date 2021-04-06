@@ -18,7 +18,7 @@ class TypeProcedure extends Model
 
     public function Stages()
     {
-        return $this->hasMany(Stage::class, 'id', 'type_procedure_id');
+        return $this->hasMany(Stage::class, 'type_procedure_id', 'id');
     }
 
     public function Procedures()
