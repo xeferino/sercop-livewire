@@ -78,12 +78,11 @@
                                                     width="400"
                                                     frameborder="0">
                                                 </iframe>
-                                                <label class="font-medium text-gray-700"><b>{{ $document->file_name }}</b></label>
+                                                <label class="font-medium text-gray-700"><b><a href="{{ route('admin.procedures.download.file', ['file' => $document->id]) }}">{{ $document->file_name }}</a></b></label>
                                             </div>
                                         </div>
                                     @endforeach
                                 </div>
-
                             </div>
 
                             <div class="px-4 py-3 text-right sm:px-6">

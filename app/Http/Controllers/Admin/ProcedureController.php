@@ -25,6 +25,8 @@ class ProcedureController extends Controller
      */
     public function create(Request $request)
     {
+        $error  = [];
+
         if($request->input('procedure')!=NULL){
             $type = TypeProcedure::find($request->input('procedure'));
             if($type){
@@ -41,7 +43,8 @@ class ProcedureController extends Controller
         return view('livewire.procedures.add', [
             'departments'   => Department::where('status', 1)->get(),
             'types'         => TypeProcedure::all(),
-            'procedures'    =>  $data ?? 0
+            'procedures'    =>  $data ?? 0,
+            'error'         =>  $error
         ]);
     }
 
@@ -81,18 +84,21 @@ class ProcedureController extends Controller
      */
     public function store(Request $request)
     {
+        $error   = [];
+        $format = ['pdf'];
+
         $rules =  [
             "number"        => "required|unique:procedures,number",
             "year"          => "required",
             "type"          => "required",
-            //"document"      => "mimes:pdf|required_with:type|max:1024",
+            "document"      => "required_with:type",
             "status"        => "required",
             "department"    => "required",
         ];
 
         $messages = [
-            /* 'document.required_with' => 'Debe adjuntar al menos un documento',
-            'document.mimes'         => 'Al menos unos de los documento adjuntado debe ser formato en PDF',
+            'document.required_with' => 'Debe adjuntar al menos un documento y en formato PDF',
+             /*'document.mimes'         => 'Al menos unos de los documento adjuntado debe ser formato en PDF',
             'document.max'           => 'Al menos unos de los documento adjuntado debe tener un peso maximo de max:', */
             'number.required'        => 'Numero sercop es obligatorio.',
             'number.unique'          => 'Numero sercop debe ser unico.',
@@ -107,6 +113,20 @@ class ProcedureController extends Controller
             return redirect()->back()
                         ->withErrors($validator)
                         ->withInput();
+        }
+
+        foreach($request->file('document') as $doc => $document){
+            $extension  = $document->getClientOriginalExtension();
+            if (!in_array($extension, $format)) {
+                $error['file_format'] = "Al menos unos de los documento adjuntado no cumple con el formato PDF";
+                break;
+            }
+        }
+
+        if(count($error) > 0){
+            return redirect()->back()
+                ->withErrors($error)
+                ->withInput();
         }
 
         $procedure = Procedure::create([
