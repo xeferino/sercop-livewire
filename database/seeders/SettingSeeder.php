@@ -61,6 +61,12 @@ class SettingSeeder extends Seeder
           Permission::create(['name' => 'show-section', 'description' => 'listado y detalle de secciones de procesos en el sistema'])->syncRoles([$super_admin, $admin, $user]);
           Permission::create(['name' => 'delete-section', 'description' => 'Eliminar de secciones de procesos en el sistema'])->syncRoles([$super_admin]);
 
+          //permissions procedures
+          Permission::create(['name' => 'create-procedure', 'description' => 'Crear procedimientos de procesos en el sistema'])->syncRoles([$super_admin, $admin]);
+          Permission::create(['name' => 'edit-procedure', 'description' => 'Editar procedimientos de procesos en el sistema'])->syncRoles([$super_admin, $admin]);
+          Permission::create(['name' => 'show-procedure', 'description' => 'listado y detalle de procedimientos de procesos en el sistema'])->syncRoles([$super_admin, $admin, $user]);
+          Permission::create(['name' => 'delete-procedure', 'description' => 'Eliminar de procedimientos de procesos en el sistema'])->syncRoles([$super_admin]);
+
 
         //setting users system default
         User::create([
