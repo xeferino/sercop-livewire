@@ -67,9 +67,8 @@
                                 </div>
                             </div>
                             <div class="bg-white px-4 py-3 grid grid-cols-2 gap-4 sm:px-6">
-
-                                <div class="rounded-md bg-gray-50 p-4">
-                                    @foreach ($procedure->documents as $document)
+                                @foreach ($procedure->documents as $document)
+                                    <div class="rounded-md bg-gray-50 p-4">
                                         <div class="relative flex items-start">
                                             <div class="ml-3 text-sm">
                                                 <iframe
@@ -81,8 +80,8 @@
                                                 <label class="font-medium text-gray-700"><b><a href="{{ route('admin.procedures.download.file', ['file' => $document->id]) }}">{{ $document->file_name }}</a></b></label>
                                             </div>
                                         </div>
-                                    @endforeach
-                                </div>
+                                    </div>
+                                @endforeach
                             </div>
 
                             <div class="px-4 py-3 text-right sm:px-6">
