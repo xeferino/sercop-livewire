@@ -10,7 +10,7 @@ use App\Models\Document;
 class Section extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'comment', 'stage_id'];
+    protected $fillable = ['name', 'short_name', 'comment', 'stage_id'];
 
 
     public function stage()

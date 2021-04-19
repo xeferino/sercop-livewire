@@ -21,6 +21,14 @@
                                             <span class="ml-2 flex-1 w-0 truncate">
                                                 {{ $sec['name'] }}
                                             </span>
+                                            {{-- <span class="ml-2 flex-1 w-0 truncate">
+                                                <select name="status[]" id="status" class="mt-1 block w-full py-2 px-3 border {{ $errors->has('status') ? ' border-red-500' : 'border-gray-300' }} bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    <option value="">.::Estado::.</option>
+                                                    <option value="Pendiente" {{ old('status') ==  'Pendiente' ? 'selected' : '' }}>Pendiente</option>
+                                                    <option value="Borrador" {{ old('status') ==  'Borrador' ? 'selected' : '' }}>Borrador</option>
+                                                    <option value="Completado" {{ old('status') ==  'Completado' ? 'selected' : '' }}>Completado</option>
+                                                </select>
+                                            </span> --}}
                                         </div>
                                         <div class="ml-4 flex-shrink-0">
                                             <input type="hidden" name="section[]" id="section" value="{{ $sec->id }}">

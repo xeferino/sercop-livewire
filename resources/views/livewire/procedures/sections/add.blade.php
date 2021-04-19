@@ -5,9 +5,16 @@
             <div class="px-4 py-5 bg-white sm:p-6">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 sm:col-span-3">
-                        <label for="name" class="block text-sm font-medium text-gray-700">Seccion</label>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Nombre de la Seccion</label>
                         <input type="text" wire:model="name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md {{ $errors->has('name') ? ' border-red-500' : 'border-gray-300' }}">
                         @error('name')
+                            <span class="text-red-500 text-xs italic">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="short_name" class="block text-sm font-medium text-gray-700">Nombre corto</label>
+                        <input type="text" wire:model="short_name" autocomplete="given-short_name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md {{ $errors->has('short_name') ? ' border-red-500' : 'border-gray-300' }}">
+                        @error('short_name')
                             <span class="text-red-500 text-xs italic">{{ $message }}</span>
                         @enderror
                     </div>
@@ -23,8 +30,6 @@
                             <span class="text-red-500 text-xs italic">{{ $message }}</span>
                         @enderror
                     </div>
-                </div>
-                <div class="grid grid-cols-1 gap-6">
                     <div class="col-span-6 sm:col-span-3">
                         <label for="comment" class="block text-sm font-medium text-gray-700">Comentario</label>
                         <textarea  wire:model="comment" autocomplete="given-comment" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md {{ $errors->has('comment') ? ' border-red-500' : 'border-gray-300' }}"></textarea>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStagesTable extends Migration
+class AddMaxAmountToTypeProcedures extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateStagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('stages', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->nullable($value=true);
-            $table->timestamps();
+        Schema::table('type_procedures', function (Blueprint $table) {
+            $table->integer('max_amount')->nullable($value=true)->after('amount');
         });
     }
 
@@ -27,6 +25,8 @@ class CreateStagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stages');
+        Schema::table('type_procedures', function (Blueprint $table) {
+            //
+        });
     }
 }

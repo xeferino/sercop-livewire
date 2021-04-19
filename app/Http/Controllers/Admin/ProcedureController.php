@@ -31,7 +31,7 @@ class ProcedureController extends Controller
             $type = TypeProcedure::find($request->input('procedure'));
             if($type){
                 $data = [];
-                foreach($type->stages as $item){
+                foreach($type->StageProcedures as $item){
                     array_push($data, [
                         'stage'     => $item->name,
                         'sections'  => Stage::find($item->id)->sections
@@ -39,7 +39,7 @@ class ProcedureController extends Controller
                 }
             }
         }
-
+        //dd($data);
         return view('livewire.procedures.add', [
             'departments'   => Department::where('status', 1)->get(),
             'types'         => TypeProcedure::all(),
@@ -180,8 +180,8 @@ class ProcedureController extends Controller
                                 File::makeDirectory($seccion , 0777, true);
                             }
 
-                           $sec_initial = Str::limit(Section::find($section)->name, 2, '');
-                           $stage_initial = Str::limit(Stage::find(Section::find($section)->stage_id)->name, 3, '');
+                           $sec_initial = Section::find($section)->short_name;
+                           $stage_initial = Stage::find(Section::find($section)->stage_id)->short_name;
 
                            $fileName =  $sec_initial.'_'.$stage_initial.'_'.$request->number.'_'.$request->year.'.'.$document->getClientOriginalExtension();
 

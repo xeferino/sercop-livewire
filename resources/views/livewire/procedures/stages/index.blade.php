@@ -11,7 +11,7 @@
             @endcan
         @else
             @can('create-stage')
-                @include('livewire.procedures.stages.edit', ['types' => $types])
+                @include('livewire.procedures.stages.edit', ['types' => $types, 'procedures' => $procedures])
             @endcan
         @endif
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -56,12 +56,12 @@
                             </div>
                             @if ($stages->count())
                                 @include('livewire.procedures.stages.alerts')
-
                                 <table class="min-w-full divide-y divide-gray-200">
                                     <thead class="bg-gray-50">
                                         <tr>
-                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
-                                            <th scope="col" colspan="2" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Procedimiento</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre de la Etapa</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre corto</th>
+                                            <th scope="col" colspan="2" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Procedimientos</th>
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
@@ -77,9 +77,20 @@
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full  bg-green-100 text-green-800">
-                                                        {{ $stage->type->name }}
-                                                    </span>
+                                                    <div class="flex items-center">
+                                                        <div class="ml-4">
+                                                            <div class="text-sm font-medium text-gray-900">
+                                                                {{ $stage->short_name }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    @foreach ($stage->typeProcedures as $item)
+                                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full  bg-green-100 text-green-800">
+                                                           {{ $item->name }}
+                                                        </span>
+                                                    @endforeach
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                     @can('edit-stage')

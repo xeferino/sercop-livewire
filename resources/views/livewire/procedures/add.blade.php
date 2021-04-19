@@ -65,8 +65,9 @@
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="department" class="block text-sm font-medium text-gray-700">Estado</label>
                                             <select name="status" id="status" class="mt-1 block w-full py-2 px-3 border {{ $errors->has('status') ? ' border-red-500' : 'border-gray-300' }} bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                                <option value="">.::Seleccione::.</option>
-                                                <option value="R" {{ old('status') ==  'R' ? 'selected' : '' }}>R</option>
+                                                <option value="">.::Selecciona el tipo de procedimiento::.</option>
+                                                <option value="Pendiente" {{ old('status') ==  'Pendiente' ? 'selected' : '' }}>Pendiente</option>
+                                                <option value="Completado" {{ old('status') ==  'Completado' ? 'selected' : '' }}>Completado</option>
                                             </select>
                                             @error("status")
                                                 <span class="text-red-500 text-xs italic">{{ $message }}</span>

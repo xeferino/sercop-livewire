@@ -11,7 +11,7 @@ use App\Models\Section;
 class Stage extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'type_procedure_id'];
+    protected $fillable = ['name', 'short_name'];
 
     public function type()
     {
@@ -21,5 +21,10 @@ class Stage extends Model
     public function Sections()
     {
         return $this->hasMany(Section::class, 'stage_id', 'id');
+    }
+
+    public function typeProcedures()
+    {
+        return $this->belongsToMany(TypeProcedure::class, 'stages_type_procedures', 'stage_id', 'type_procedure_id');
     }
 }

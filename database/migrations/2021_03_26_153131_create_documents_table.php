@@ -24,7 +24,7 @@ class CreateDocumentsTable extends Migration
             $table->foreignId('procedure_id')->nullable($value=true);
             $table->foreign('procedure_id')->references('id')->on('procedures')->onDelete('cascade');
             $table->foreignId('section_id')->nullable($value=true);
-            $table->foreign('section_id')->references('id')->on('sections')->onDelete('set null');
+            $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
             $table->timestamps();
         });
     }

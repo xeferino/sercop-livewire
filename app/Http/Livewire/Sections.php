@@ -15,16 +15,20 @@ class Sections extends Component
     public $perPage = '10';
     public $action = '';
     public $name;
+    public $short_name;
     public $comment;
     public $section_id;
     public $stage_id;
     public $update = false;
 
     protected $messages = [
-        'name.required'     => 'El nombre es requerido.',
-        'name.min'          => 'El nombre es requiere minimo :min caracteres.',
-        'name.unique'       => 'El nombre debe ser unico.',
-        'stage_id.required' => 'La etapa es requerida.',
+        'name.required'         => 'El nombre es requerido.',
+        'name.min'              => 'El nombre es requiere minimo :min caracteres.',
+        'name.unique'           => 'El nombre debe ser unico.',
+        'short_name.required'   => 'El nombre corto es requerido.',
+        'short_name.min'        => 'El nombre corto es requiere minimo :min caracteres.',
+        'short_name.unique'     => 'El nombre corto debe ser unico.',
+        'stage_id.required'     => 'La etapa es requerida.',
     ];
 
     protected $queryString = [
@@ -43,16 +47,18 @@ class Sections extends Component
     protected function rules()
     {
         return [
-            'name'      => 'required|min:4|unique:sections,name,'.$this->section_id,
-            'stage_id'  => 'required'
+            'name'          => 'required|min:4|unique:sections,name,'.$this->section_id,
+            'short_name'    => 'required|min:3|unique:sections,short_name,'.$this->section_id,
+            'stage_id'      => 'required'
         ];
     }
 
     private function resetInput()
     {
-        $this->name     = null;
-        $this->comment  = null;
-        $this->stage_id = '';
+        $this->name         = null;
+        $this->short_name   = null;
+        $this->comment      = null;
+        $this->stage_id     = '';
     }
 
     public function clear()
@@ -80,9 +86,10 @@ class Sections extends Component
         $this->validate();
 
         Section::create([
-            'name'     => $this->name,
-            'stage_id' => $this->stage_id,
-            'comment'  => $this->comment
+            'name'          => $this->name,
+            'short_name'    => $this->short_name,
+            'stage_id'      => $this->stage_id,
+            'comment'       => $this->comment
         ]);
         $this->resetInput();
         $this->action = 'store';
@@ -94,6 +101,7 @@ class Sections extends Component
         $section             = Section::findOrFail($id);
         $this->section_id    = $id;
         $this->name          = $section->name;
+        $this->short_name    = $section->short_name;
         $this->comment       = $section->comment;
         $this->stage_id      = $section->stage_id;
         $this->update        = true;
@@ -111,9 +119,10 @@ class Sections extends Component
             $section = Section::find($this->section_id);
 
             $section->update([
-                'name'      => $this->name,
-                'stage_id'  => $this->stage_id,
-                'comment'   => $this->comment
+                'name'          => $this->name,
+                'short_name'    => $this->short_name,
+                'stage_id'      => $this->stage_id,
+                'comment'       => $this->comment
             ]);
 
             $this->resetInput();

@@ -15,14 +15,19 @@ class Stages extends Component
     public $perPage = '10';
     public $action = '';
     public $name;
+    public $short_name;
     public $type_procedure_id;
+    public $procedures = [];
     public $stage_id;
     public $update = false;
 
     protected $messages = [
-        'name.required'     => 'El nombre es requerido.',
-        'name.min'          => 'El nombre es requiere minimo :min caracteres.',
-        'name.unique'       => 'El nombre debe ser unico.',
+        'name.required'         => 'El nombre es requerido.',
+        'name.min'              => 'El nombre es requiere minimo :min caracteres.',
+        'name.unique'           => 'El nombre debe ser unico.',
+        'short_name.required'   => 'El nombre corto es requerido.',
+        'short_name.min'        => 'El nombre corto es requiere minimo :min caracteres.',
+        'short_name.unique'     => 'El nombre corto debe ser unico.',
         'type_procedure_id.required'   => 'El tipo de procedimiento es requerido.',
     ];
 
@@ -35,7 +40,9 @@ class Stages extends Component
     {
         return view('livewire.procedures.stages.index',[
             'stages' => Stage::where("name", "LIKE", "%{$this->search}%")->orderBy('id', 'DESC')->paginate($this->perPage),
-            'types' => TypeProcedure::all()
+            'types' => TypeProcedure::all(),
+            'procedures' => $this->procedures,
+
         ]);
     }
 
@@ -43,13 +50,15 @@ class Stages extends Component
     {
         return [
             'name'               => 'required|min:4|unique:stages,name,'.$this->stage_id,
+            'short_name'         => 'required|min:3|unique:stages,short_name,'.$this->stage_id,
             'type_procedure_id'  => 'required'
         ];
     }
 
     private function resetInput()
     {
-        $this->name = null;
+        $this->name              = null;
+        $this->short_name        = null;
         $this->type_procedure_id = null;
     }
 
@@ -78,12 +87,12 @@ class Stages extends Component
         $this->validate();
 
         Stage::create([
-            'name'   => $this->name,
-            'type_procedure_id' => $this->type_procedure_id
-        ]);
+            'name'         => $this->name,
+            'short_name'   => $this->short_name
+        ])->typeProcedures()->sync($this->type_procedure_id, false);
+
         $this->resetInput();
         $this->action = 'store';
-
     }
 
     public function edit($id)
@@ -91,7 +100,8 @@ class Stages extends Component
         $stage                      = Stage::findOrFail($id);
         $this->stage_id             = $id;
         $this->name                 = $stage->name;
-        $this->type_procedure_id    = $stage->type_procedure_id;
+        $this->short_name           = $stage->short_name;
+        $this->procedures           = $stage->typeProcedures;
         $this->update               = true;
         $this->resetValidation();
         $this->action = '';
@@ -108,8 +118,9 @@ class Stages extends Component
 
             $stage->update([
                 'name'              => $this->name,
-                'type_procedure_id' => $this->type_procedure_id
+                'short_name'        => $this->short_name,
             ]);
+            $stage->typeProcedures()->sync($this->type_procedure_id);
 
             $this->resetInput();
             $this->update = false;

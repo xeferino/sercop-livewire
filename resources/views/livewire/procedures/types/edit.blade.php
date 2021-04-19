@@ -5,16 +5,33 @@
             <div class="px-4 py-5 bg-white sm:p-6">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 sm:col-span-3">
-                    <label for="name" class="block text-sm font-medium text-gray-700">Procedimiento</label>
+                    <label for="name" class="block text-sm font-medium text-gray-700">Nombre del Procedimiento</label>
                     <input type="text" wire:model="name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md {{ $errors->has('name') ? ' border-red-500' : 'border-gray-300' }}">
                         @error('name')
                             <span class="text-red-500 text-xs italic">{{ $message }}</span>
                         @enderror
                     </div>
+
                     <div class="col-span-6 sm:col-span-3">
-                        <label for="amount" class="block text-sm font-medium text-gray-700">Monto</label>
+                        <label for="short_name" class="block text-sm font-medium text-gray-700">Nombre corto</label>
+                        <input type="text" wire:model="short_name" autocomplete="given-short_name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md {{ $errors->has('short_name') ? ' border-red-500' : 'border-gray-300' }}">
+                        @error('short_name')
+                            <span class="text-red-500 text-xs italic">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="amount" class="block text-sm font-medium text-gray-700">Monto Minimo</label>
                         <input type="text" wire:model="amount" autocomplete="given-amount" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md {{ $errors->has('amount') ? ' border-red-500' : 'border-gray-300' }}">
                         @error('amount')
+                            <span class="text-red-500 text-xs italic">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="max_amount" class="block text-sm font-medium text-gray-700">Monto Maximo</label>
+                        <input type="text" wire:model="max_amount" autocomplete="given-max_amount" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm rounded-md {{ $errors->has('max_amount') ? ' border-red-500' : 'border-gray-300' }}">
+                        @error('max_amount')
                             <span class="text-red-500 text-xs italic">{{ $message }}</span>
                         @enderror
                     </div>

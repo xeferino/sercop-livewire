@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStagesTable extends Migration
+class AddNameShortToSections extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateStagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('stages', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->nullable($value=true);
-            $table->timestamps();
+        Schema::table('sections', function (Blueprint $table) {
+            $table->string('short_name')->nullable($value=true)->after('name');
         });
     }
 
@@ -27,6 +25,8 @@ class CreateStagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stages');
+        Schema::table('sections', function (Blueprint $table) {
+            //
+        });
     }
 }
