@@ -61,8 +61,8 @@
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Proceso</th>
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha</th>
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
-                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Usuario</th>
-                                            <th scope="col" colspan="2" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Doc</th>
+                                            <th scope="col" colspan="2" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Usuario</th>
+                                            {{-- <th scope="col" colspan="2" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Doc</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
@@ -133,7 +133,7 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                {{-- <td class="px-6 py-4 whitespace-nowrap">
                                                     @foreach ($item['documents'] as $document)
                                                         <div class="flex items-center">
                                                             <div class="ml-4">
@@ -155,17 +155,26 @@
                                                             </div>
                                                         </div>
                                                     @endforeach
-                                                </td>
+                                                </td> --}}
 
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    {{-- @can('edit-section')
-                                                        <button type="button" wire:click='edit({{ $item->id }})' class="inline-flex ml-6 items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-blue-500 hover:bg-blue-600 focus:outline-none">
+                                                     @can('show-procedure')
+                                                        <a href="{{ route('admin.procedures.show', ['procedure' => $item->id]) }}" class="inline-flex ml-6 items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-blue-500 hover:bg-blue-600 focus:outline-none">
                                                             <!-- Heroicon name: outline/plus -->
+                                                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                            </svg>
+                                                        </a>
+                                                    @endcan
+                                                    @can('edit-procedure')
+                                                        <a href="{{ route('admin.procedures.edit', ['procedure' => $item->id, 'stage' => $item->type->StageProcedures[0]['name']]) }}" class="inline-flex ml-6 items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-blue-500 hover:bg-blue-600 focus:outline-none">
+                                                        <!-- Heroicon name: outline/plus -->
                                                             <svg  class="h-6 w-6"xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                                             </svg>
-                                                        </button>
-                                                    @endcan --}}
+                                                        </a>
+                                                    @endcan
                                                     @can('delete-procedure')
                                                         <form class="inline-flex" action="{{ route('admin.procedures.destroy', ['procedure' => $item->id]) }}" method="POST">
                                                             @csrf

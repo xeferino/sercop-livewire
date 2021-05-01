@@ -44,6 +44,10 @@ Route::prefix('sercop/admin/')->name('admin.')->middleware('auth:web')->group(fu
 
     Route::get('/procedures', Procedures::class)->name('procedures.index');
 
+    Route::post('/procedures/type', 'App\Http\Controllers\Admin\ProcedureController@type')->name('procedures.type');
+
+    Route::put('/procedures/update/{procedure}', 'App\Http\Controllers\Admin\ProcedureController@updateProcedure')->name('procedures.update.single');
+
     Route::resource('procedures', ProcedureController::class)->except(['index']);
 
     Route::resource('roles', RoleController::class);
